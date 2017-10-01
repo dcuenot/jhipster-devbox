@@ -15,7 +15,7 @@ locale-gen fr_FR.UTF-8
 dpkg-reconfigure locales
 
 # install utilities
-apt-get -y install vim git zip bzip2 fontconfig curl language-pack-en
+apt-get -y install vim git zip bzip2 fontconfig curl language-pack-fr
 
 # install Java 8
 apt-get install openjdk-8-jdk
@@ -94,7 +94,7 @@ apt-get install -y guake
 cp /usr/share/applications/guake.desktop /etc/xdg/autostart/
 
 # install jhipster-devbox
-git clone git://github.com/jhipster/jhipster-devbox.git /home/vagrant/jhipster-devbox
+git clone git://github.com/dcuenot/jhipster-devbox.git /home/vagrant/jhipster-devbox
 chmod +x /home/vagrant/jhipster-devbox/tools/*.sh
 
 # install zsh
@@ -129,6 +129,10 @@ su -c 'umake ide idea /home/vagrant/.local/share/umake/ide/idea' vagrant
 # increase Inotify limit (see https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit)
 echo "fs.inotify.max_user_watches = 524288" > /etc/sysctl.d/60-inotify.conf
 sysctl -p --system
+
+# install Terrraform
+chmod +x ./terraform.sh
+sudo -u vagrant -H sh -c "./terraform.sh"
 
 # install latest Docker
 curl -sL https://get.docker.io/ | sh
