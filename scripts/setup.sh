@@ -10,7 +10,7 @@ apt-get upgrade
 
 export LANGUAGE='fr_FR.UTF-8'
 export LANG='fr_FR.UTF-8'
-export LC_ALL='fr_FR.UTF-8'
+export LC_ALL='en_US.UTF-8'
 locale-gen fr_FR.UTF-8
 dpkg-reconfigure locales
 
@@ -40,6 +40,9 @@ su -c "yarn global add generator-jhipster@4.9.0" vagrant
 # install JHipster UML
 su -c "yarn global add jhipster-uml@2.0.3" vagrant
 
+# French keyboard
+loadkeys fr
+
 ################################################################################
 # Install the graphical environment
 ################################################################################
@@ -47,7 +50,7 @@ su -c "yarn global add jhipster-uml@2.0.3" vagrant
 # force encoding
 echo 'LANG=fr_FR.UTF-8' >> /etc/environment
 echo 'LANGUAGE=fr_FR.UTF-8' >> /etc/environment
-echo 'LC_ALL=fr_FR.UTF-8' >> /etc/environment
+echo 'LC_ALL=en_US.UTF-8' >> /etc/environment
 echo 'LC_CTYPE=fr_FR.UTF-8' >> /etc/environment
 
 # run GUI as non-privileged user
@@ -81,10 +84,10 @@ apt install -y ubuntu-make
 apt-get install -y chromium-browser
 
 # install MySQL Workbench
-apt-get install -y mysql-workbench
+#apt-get install -y mysql-workbench
 
 # install PgAdmin
-apt-get install -y pgadmin3
+#apt-get install -y pgadmin3
 
 # install Heroku toolbelt
 #wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
@@ -96,6 +99,18 @@ cp /usr/share/applications/guake.desktop /etc/xdg/autostart/
 # install jhipster-devbox
 git clone git://github.com/dcuenot/jhipster-devbox.git /home/vagrant/jhipster-devbox
 chmod +x /home/vagrant/jhipster-devbox/tools/*.sh
+
+# install Ansible
+/home/vagrant/jhipster-devbox/tools/ansible.sh
+
+# install Cloud foundry
+/home/vagrant/jhipster-devbox/tools/cloud-foundry-clients.sh
+
+# install keepaas
+/home/vagrant/jhipster-devbox/tools/keepass.sh
+
+# install Terrraform
+sudo -u vagrant -H sh -c "/home/vagrant/jhipster-devbox/tools/terraform.sh"
 
 # install zsh
 apt-get install -y zsh
@@ -115,7 +130,7 @@ echo 'export PATH="$PATH:/usr/bin:/home/vagrant/.yarn-global/bin:/home/vagrant/.
 chown -R vagrant:vagrant /home/vagrant/.zshrc /home/vagrant/.oh-my-zsh
 
 # install Visual Studio Code
-su -c 'umake ide visual-studio-code /home/vagrant/.local/share/umake/ide/visual-studio-code --accept-license' vagrant
+#su -c 'umake ide visual-studio-code /home/vagrant/.local/share/umake/ide/visual-studio-code --accept-license' vagrant
 
 # fix links (see https://github.com/ubuntu/ubuntu-make/issues/343)
 sed -i -e 's/visual-studio-code\/code/visual-studio-code\/bin\/code/' /home/vagrant/.local/share/applications/visual-studio-code.desktop
@@ -130,9 +145,6 @@ su -c 'umake ide idea /home/vagrant/.local/share/umake/ide/idea' vagrant
 echo "fs.inotify.max_user_watches = 524288" > /etc/sysctl.d/60-inotify.conf
 sysctl -p --system
 
-# install Terrraform
-chmod +x ./terraform.sh
-sudo -u vagrant -H sh -c "./terraform.sh"
 
 # install latest Docker
 curl -sL https://get.docker.io/ | sh
