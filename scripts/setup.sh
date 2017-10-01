@@ -8,10 +8,10 @@ apt-get upgrade
 # Install the mandatory tools
 ################################################################################
 
-export LANGUAGE='en_US.UTF-8'
-export LANG='en_US.UTF-8'
-export LC_ALL='en_US.UTF-8'
-locale-gen en_US.UTF-8
+export LANGUAGE='fr_FR.UTF-8'
+export LANG='fr_FR.UTF-8'
+export LC_ALL='fr_FR.UTF-8'
+locale-gen fr_FR.UTF-8
 dpkg-reconfigure locales
 
 # install utilities
@@ -45,10 +45,10 @@ su -c "yarn global add jhipster-uml@2.0.3" vagrant
 ################################################################################
 
 # force encoding
-echo 'LANG=en_US.UTF-8' >> /etc/environment
-echo 'LANGUAGE=en_US.UTF-8' >> /etc/environment
-echo 'LC_ALL=en_US.UTF-8' >> /etc/environment
-echo 'LC_CTYPE=en_US.UTF-8' >> /etc/environment
+echo 'LANG=fr_FR.UTF-8' >> /etc/environment
+echo 'LANGUAGE=fr_FR.UTF-8' >> /etc/environment
+echo 'LC_ALL=fr_FR.UTF-8' >> /etc/environment
+echo 'LC_CTYPE=fr_FR.UTF-8' >> /etc/environment
 
 # run GUI as non-privileged user
 echo 'allowed_users=anybody' > /etc/X11/Xwrapper.config
@@ -87,7 +87,7 @@ apt-get install -y mysql-workbench
 apt-get install -y pgadmin3
 
 # install Heroku toolbelt
-wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+#wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 
 # install Guake
 apt-get install -y guake
