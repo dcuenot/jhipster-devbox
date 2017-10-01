@@ -7,15 +7,17 @@ terraform_url=$(curl --silent https://releases.hashicorp.com/index.json | jq '{t
 packer_url=$(curl --silent https://releases.hashicorp.com/index.json | jq '{packer}' | egrep "linux.*64" | sort -rh | head -1 | awk -F[\"] '{print $4}')
 
 # Create a move into directory.
-cd ~
+cd /tmp
 #mkdir packer
-mkdir terraform && cd $_
 
 # Download Terraform. URI: https://www.terraform.io/downloads.html
 echo Terraform... : $terraform_url
 curl -o terraform.zip $terraform_url
 # Unzip and install
 unzip terraform.zip
+rm terraform.zip
+
+sudo mv terraform /usr/bin
 
 # Change directory to Packer
 #cd ~/packer
@@ -25,9 +27,9 @@ unzip terraform.zip
 # Unzip and install
 #unzip packer.zip
 
-echo '
+#echo '
 # Terraform & Packer Paths.
-export PATH=~/terraform/:$PATH
-' >>~/.bash_profile
+#export PATH=~/terraform/:$PATH
+#' >>~/.bash_profile
 
-source ~/.bash_profile
+#source ~/.bash_profile
