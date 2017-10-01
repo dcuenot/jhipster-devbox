@@ -1,3 +1,3 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 sudo apt-get install -y  ansible jq unzip
