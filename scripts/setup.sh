@@ -8,10 +8,10 @@ apt-get upgrade
 # Install the mandatory tools
 ################################################################################
 
-export LANGUAGE='fr_FR.UTF-8'
-export LANG='fr_FR.UTF-8'
+export LANGUAGE='en_US.UTF-8'
+export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
-locale-gen fr_FR.UTF-8
+locale-gen en_US.UTF-8
 dpkg-reconfigure locales
 
 # install utilities
@@ -48,10 +48,10 @@ loadkeys fr
 ################################################################################
 
 # force encoding
-echo 'LANG=fr_FR.UTF-8' >> /etc/environment
-echo 'LANGUAGE=fr_FR.UTF-8' >> /etc/environment
+echo 'LANG=en_US.UTF-8' >> /etc/environment
+echo 'LANGUAGE=en_US.UTF-8' >> /etc/environment
 echo 'LC_ALL=en_US.UTF-8' >> /etc/environment
-echo 'LC_CTYPE=fr_FR.UTF-8' >> /etc/environment
+echo 'LC_CTYPE=en_US.UTF-8' >> /etc/environment
 
 # run GUI as non-privileged user
 echo 'allowed_users=anybody' > /etc/X11/Xwrapper.config
@@ -64,8 +64,8 @@ apt-get remove -y light-locker --purge
 
 # change the default wallpaper
 #wget https://jhipster.github.io/images/wallpaper-004-2560x1440.png -O /usr/share/xfce4/backdrops/jhipster-wallpaper.png
-wget https://raw.githubusercontent.com/jhipster/jhipster-devbox/master/images/jhipster-wallpaper.png -O /usr/share/xfce4/backdrops/jhipster-wallpaper.png
-sed -i -e 's/xubuntu-wallpaper.png/jhipster-wallpaper.png/' /etc/xdg/xdg-xubuntu/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
+wget https://raw.githubusercontent.com/jhipster/jhipster-devbox/master/images/thales.jpg -O /usr/share/xfce4/backdrops/thales.jpg
+sed -i -e 's/xubuntu-wallpaper.png/thales.jpg/' /etc/xdg/xdg-xubuntu/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
 
 ################################################################################
 # Install the development tools
@@ -110,7 +110,7 @@ chmod +x /home/vagrant/jhipster-devbox/tools/*.sh
 /home/vagrant/jhipster-devbox/tools/keepass.sh
 
 # install Terrraform
-sudo -u vagrant -H sh -c "/home/vagrant/jhipster-devbox/tools/terraform.sh"
+/home/vagrant/jhipster-devbox/tools/terraform.sh
 
 # install zsh
 apt-get install -y zsh
@@ -133,10 +133,10 @@ chown -R vagrant:vagrant /home/vagrant/.zshrc /home/vagrant/.oh-my-zsh
 #su -c 'umake ide visual-studio-code /home/vagrant/.local/share/umake/ide/visual-studio-code --accept-license' vagrant
 
 # fix links (see https://github.com/ubuntu/ubuntu-make/issues/343)
-sed -i -e 's/visual-studio-code\/code/visual-studio-code\/bin\/code/' /home/vagrant/.local/share/applications/visual-studio-code.desktop
+#sed -i -e 's/visual-studio-code\/code/visual-studio-code\/bin\/code/' /home/vagrant/.local/share/applications/visual-studio-code.desktop
 
 # disable GPU (see https://code.visualstudio.com/docs/supporting/faq#_vs-code-main-window-is-blank)
-sed -i -e 's/"$CLI" "$@"/"$CLI" "--disable-gpu" "$@"/' /home/vagrant/.local/share/umake/ide/visual-studio-code/bin/code
+#sed -i -e 's/"$CLI" "$@"/"$CLI" "--disable-gpu" "$@"/' /home/vagrant/.local/share/umake/ide/visual-studio-code/bin/code
 
 #install IDEA community edition
 su -c 'umake ide idea /home/vagrant/.local/share/umake/ide/idea' vagrant
